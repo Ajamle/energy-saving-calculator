@@ -1,11 +1,26 @@
-#include "dialog.h"
-#include <QApplication>
+#ifndef DIALOG_H
+#define DIALOG_H
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    Dialog w;
-    w.show();
+#include <QDialog>
 
-    return a.exec();
+namespace Ui {
+class Dialog;
 }
+
+class Dialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Dialog(QWidget *parent = 0);
+    ~Dialog();
+
+private slots:
+    void on_pushButton_clicked();
+    void onTypeOfUtilityChanged(QString type);
+
+private:
+    Ui::Dialog *ui;
+};
+
+#endif // DIALOG_H

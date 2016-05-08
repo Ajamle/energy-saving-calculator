@@ -1,6 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QMessageBox>
+#include <QDebug>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -30,16 +31,14 @@ Dialog::Dialog(QWidget *parent) :
     ui->comboBox_4->addItem("0,71 BAM");
     ui->comboBox_4->addItem("0,37 BAM");
     //price of utilities should be automatically selected once the user chooses option in comboBox1
-ui->comboBox_5->addItem("Type of utility changed");
-
+    connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(onTypeOfUtilityChanged(QString)));
 }
-ui->setupUi(this);
-ui->comboBox_6;
-connect(ui->comboBox_6, SIGNAL(currentTextChanged(QString)), this, SLOT(onTypeOfUtilityChanged(QString)));
+
 void Dialog::onTypeOfUtilityChanged(QString type)
 {
     qDebug() << "Now the type is... " << type;
 }
+
 Dialog::~Dialog()
 {
     delete ui;
